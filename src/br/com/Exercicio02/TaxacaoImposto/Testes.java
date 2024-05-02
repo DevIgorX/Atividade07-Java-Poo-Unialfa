@@ -7,10 +7,7 @@ class CadastrarProduto {
     ArrayList<Estadual> ProdutoEstadual = new ArrayList<>();
     ArrayList<Nacional> ProdutosNacionais = new ArrayList<>();
     ArrayList<Importado> ProdutosImportados = new ArrayList<>();
-
     ArrayList<Produto> produtos = new ArrayList<>();
-
-
 
 
 
@@ -61,9 +58,6 @@ class CadastrarProduto {
 
 
 }
-
-
-
 
 
 

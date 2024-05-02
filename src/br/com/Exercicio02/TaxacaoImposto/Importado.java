@@ -27,7 +27,7 @@ public class Importado extends  Produto {
         System.out.println("descricao: " +getDescricao());
         System.out.println("valor: " +getValor());
         System.out.println("imposto: " +(+getImposto() *100)+"%");
-        System.out.println("taxa: " +(+getTaxa())+"%");
-        System.out.println("taxa de importação: " +(+getTaxaImportacao())+"%");
+        System.out.println("taxa: " +(+getTaxa() *100)+"%");
+        System.out.println("taxa de importação: " +(+getTaxaImportacao() *100)+"%");
     }
 }
