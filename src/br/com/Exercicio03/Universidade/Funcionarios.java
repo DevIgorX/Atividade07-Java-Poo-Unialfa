@@ -25,6 +25,7 @@ public class Funcionarios {
     }
 
     public int getFaixaSalarial(){
+
         return faixaSalarial;
     }
     public String getTipoFuncionario(){

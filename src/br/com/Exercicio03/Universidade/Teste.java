@@ -6,8 +6,7 @@ package br.com.Exercicio03.Universidade;
 
  class Universidade {
 
-  public   ArrayList<Departamentos> DepartamensoUniversidade = new ArrayList<>();
-
+  public ArrayList<Departamentos> DepartamensoUniversidade = new ArrayList<>();
   public ArrayList<Funcionarios> funcionarios = new ArrayList<>();
 
   Universidade(){
@@ -18,9 +17,38 @@ package br.com.Exercicio03.Universidade;
   }
 
 
-  public void cadastrarDepartamento( Departamentos departamento){
-    DepartamensoUniversidade.add(departamento);
+
+  public void cadastrarDepartamento(int codigo, String nomeDepatamento, int gasto){
+
+      DepartamensoUniversidade.add( new Departamentos(codigo, nomeDepatamento, gasto));
   }
+     public void cadastrarDepat(){
+         Scanner scanner = new Scanner(System.in);
+         System.out.println("Digite o Código do Depatamento");
+         int codigo = scanner.nextInt();
+         scanner.nextLine();
+         System.out.println("Digite o nome do Depatamento");
+         String nomeDep = scanner.nextLine();
+         System.out.println("Digite o Gasto total do Departamento");
+         int gasto = scanner.nextInt();
+         scanner.nextLine();
+         System.out.println("Cadastrando Departamento...");
+         cadastrarDepartamento(codigo, nomeDep, gasto);
+         System.out.println("Departamento Cadastrado com Sucesso");
+
+         System.out.println("Deseja voltar ao Menu? 1-Sim  2-Não");
+         int retorno = scanner.nextInt();
+
+         if (retorno == 1){
+             menu();
+         }else if (retorno == 2){
+             System.out.println("Ok, Saindo...");
+             scanner.close();
+         }else {
+             System.out.println("Respota Invalida, tente novamente!");
+         }
+     }
+
 
      public  void listarDepartamentos(){
        for(int i = 0; i < DepartamensoUniversidade.size(); i++){
@@ -30,20 +58,34 @@ package br.com.Exercicio03.Universidade;
        }
     }
 
-    public void cadastro(){
+    public void cadastroFun(){
       Scanner scanner = new Scanner(System.in);
 
         System.out.println("digite o nome do Funcionario");
         String nome = scanner.nextLine();
         System.out.println("Digite o codigo do departamento");
         int codigo = scanner.nextInt();
+        scanner.nextLine();
         System.out.println("Digite a faixa salarial");
         int faixa = scanner.nextInt();
+        scanner.nextLine();
         System.out.println("Funcionario Docente ou Técnino?");
-        String tipo = scanner.nextLine();
-
-        cadastrarFuncionario(nome, codigo, faixa, tipo);
+        String nome2 = scanner.nextLine();
+        System.out.println("cadastrando...");
+        cadastrarFuncionario(nome, codigo, faixa,nome2);
         System.out.println("Funcionario Cadastrado com Sucesso!");
+
+        System.out.println("Deseja voltar ao Menu? 1-Sim  2-Não");
+        int retorno = scanner.nextInt();
+
+        if (retorno == 1){
+            menu();
+        }else if (retorno == 2){
+            System.out.println("Ok, Saindo...");
+            scanner.close();
+        }else {
+            System.out.println("Respota Invalida, tente novamente!");
+        }
 
     }
 
@@ -54,8 +96,56 @@ package br.com.Exercicio03.Universidade;
 
     public void listarFuncionarios(){
       for (int i = 0; i < funcionarios.size(); i++){
-          System.out.println((i+1)+". "+funcionarios.get(i).getNome());
+          System.out.println((i+1)+". "+funcionarios.get(i).getNome()+" - "+funcionarios.get(i).getCodigoDepartamento()+" - "+funcionarios.get(i).getTipoFuncionario()+" - "+funcionarios.get(i).getTipoFuncionario());
         }
+    }
+
+    public void buscarDepatamentoPorNome(){
+      Scanner scanner = new Scanner(System.in);
+        System.out.println("Digite o nome do Departamento que desejar encontrar ");
+        String nomeDepatamento = scanner.nextLine();
+        for(int i = 0; i < DepartamensoUniversidade.size(); i++){
+            if(DepartamensoUniversidade.get(i).getNomeDepartamento() == nomeDepatamento){
+                System.out.println(DepartamensoUniversidade.get(i).getCodigo()+" - "+ DepartamensoUniversidade.get(i).getNomeDepartamento()+" - "+DepartamensoUniversidade.get(i).getGastoTotal());
+            }
+        }
+        System.out.println("Departamento Não Encontrado");
+    }
+
+
+    public void menu(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Olá Seja Bem-vindo ao nosso sistema!");
+        System.out.println("Menu de Opções");
+        System.out.println("1- Cadastrar Departamento");
+        System.out.println("2- Cadastrar Funcionário Técnico/Docente");
+        System.out.println("3- Buscar Departamento por Nome");
+        System.out.println("4- Buscar Funcionário por Nome");
+        System.out.println("5- Listar Departamentos com Funcionários com Faixa Salarial Específica");
+        System.out.println("6- Listar Funcionários com Faixa Salarial Específica");
+        System.out.println("7- Listar Depatamentos cujo gasto total está entre uma Faixa Salarial Específica");
+        System.out.println("8-  Listar todos Funionários da Universidade");
+        System.out.println("9- Listar todos Departamentos da Universidade");
+        System.out.println("10- Listar todos Departamentos da Universidade e seus Respectivos Funcionários");
+        System.out.println("11- Listar todos Funcionários Docente");
+        System.out.println("12- Listar todos Funcionários Técnico");
+        System.out.println("0- Sair");
+
+        int resposta = scanner.nextInt();
+
+        switch (resposta){
+            case 1 :
+                cadastrarDepat();
+                break;
+            case 2 :
+                cadastroFun();
+                break;
+            case 3 :
+                buscarDepatamentoPorNome();
+            default:
+                System.out.println("Resposta invalida, escolha uma das opções do Menu!");
+        }
+
     }
 
 
@@ -67,27 +157,11 @@ package br.com.Exercicio03.Universidade;
 public class Teste {
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+
         Universidade universidade = new Universidade();
+        universidade.menu();
 
-//        Departamentos comercial = new Departamentos(1903,"Comercial", 1787);
 //
-//
-//        universidade.cadastrarDepartamento(comercial);
-//        universidade.listarDepartamentos();
-
-
-        System.out.println("Olá Seja Bem-vindo ao nosso sistema, deseja cadastrar um funcionario novo?");
-        String resposta = scanner.nextLine();
-
-        if(resposta.toLowerCase().trim().equals("sim")){
-            universidade.cadastro();
-        }else {
-            System.out.println("Ok, saindo...");
-        }
-
-
-
 
 
     }
