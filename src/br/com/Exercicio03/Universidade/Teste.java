@@ -1,7 +1,7 @@
 package br.com.Exercicio03.Universidade;
 
+
  import java.util.ArrayList;
- import java.util.Locale;
  import java.util.Scanner;
 
 
@@ -15,6 +15,11 @@ package br.com.Exercicio03.Universidade;
       DepartamensoUniversidade.add(new Departamentos(1902,"RH",2000));
       DepartamensoUniversidade.add( new Departamentos(1903,"Administrativo",7392));
       DepartamensoUniversidade.add(new Departamentos(1904,"Produção",6547));
+
+      funcionarios.add(new Funcionarios("Tauam Igor",1901,3768,"Docente"));
+      funcionarios.add(new Funcionarios("Marcos Dias",1902,2000,"Técnico"));
+      funcionarios.add(new Funcionarios("Luis Carlos",1904,2000,"Docente"));
+
   }
 
   public void cadastrarDepartamento(int codigo, String nomeDepatamento, int gasto){
@@ -122,6 +127,68 @@ package br.com.Exercicio03.Universidade;
 
     }
 
+    public void buscarFuncionarioPorNome(){
+      Scanner scanner = new Scanner(System.in);
+        System.out.println("Digite o nome do Funcionario");
+        String nome = scanner.nextLine();
+        boolean funcionarioEncontrado = false;
+
+        for (Funcionarios funcionario : funcionarios) {
+            if(funcionario.getNome().equalsIgnoreCase(nome)){
+                System.out.println("Funcionario: "+ funcionario.getNome() + " Tipo: " +funcionario.getTipoFuncionario()+ " Departamento: " + funcionario.getCodigoDepartamento() +" Faixa Salarial: " +funcionario.getFaixaSalarial() );
+                funcionarioEncontrado = true;
+            }
+        }
+
+        if(!funcionarioEncontrado){
+            System.out.println("Funcionário não localizado!");
+            System.out.println("Deseja tentar novamente? digite: 1");
+            System.out.println("Voltar ao Menu Princial? digite: 2");
+            int resposta = scanner.nextInt();
+
+            if(resposta == 1){
+                buscarDepatamentoPorNome();
+            }else {
+                menu();
+            }
+        }
+        retorno();
+
+    }
+
+    public void listaFuncionariosFaixaSalarial (){
+      Scanner scanner = new Scanner(System.in);
+        System.out.println("Digite a Faixa Salarial");
+        int faixaSalarial = scanner.nextInt();
+        int totalFuncionarios  = 0;
+        boolean funcionariosEncontrados = false;
+
+        for (Funcionarios funcionario : funcionarios){
+            if(funcionario.getFaixaSalarial() == faixaSalarial){
+                System.out.println("Funcionario: "+ funcionario.getNome() + " - Tipo: " +funcionario.getTipoFuncionario()+ " - Codigo do Departamento: " + funcionario.getCodigoDepartamento() +" - Faixa Salarial: " +funcionario.getFaixaSalarial() );
+                funcionariosEncontrados = true;
+                totalFuncionarios++;
+            }
+        }
+
+        System.out.println("Temos: " +totalFuncionarios+ " Funcionários dentro dessa Faixa Salarial");
+
+        if(!funcionariosEncontrados){
+            System.out.println("Funcionários não localizados!");
+            System.out.println("Deseja tentar novamente? digite: 1");
+            System.out.println("Voltar ao Menu Princial? digite: 2");
+            int resposta = scanner.nextInt();
+
+            if(resposta == 1){
+                buscarDepatamentoPorNome();
+            }else {
+                menu();
+            }
+        }
+        retorno();
+
+    }
+
 
     public void menu(){
         Scanner scanner = new Scanner(System.in);
@@ -131,8 +198,8 @@ package br.com.Exercicio03.Universidade;
         System.out.println("2- Cadastrar Funcionário Técnico/Docente");
         System.out.println("3- Buscar Departamento por Nome");
         System.out.println("4- Buscar Funcionário por Nome");
-        System.out.println("5- Listar Departamentos com Funcionários com Faixa Salarial Específica");
-        System.out.println("6- Listar Funcionários com Faixa Salarial Específica");
+        System.out.println("5- Listar Funcionários com Faixa Salarial Específica");
+        System.out.println("6- Listar Departamentos com Funcionários com Faixa Salarial Específica");
         System.out.println("7- Listar Depatamentos cujo gasto total está entre uma Faixa Salarial Específica");
         System.out.println("8-  Listar todos Funionários da Universidade");
         System.out.println("9- Listar todos Departamentos da Universidade");
@@ -153,6 +220,18 @@ package br.com.Exercicio03.Universidade;
             case 3 :
                 buscarDepatamentoPorNome();
                 break;
+            case 4 :
+                buscarFuncionarioPorNome();
+                break;
+            case 5 :
+                listaFuncionariosFaixaSalarial();
+                break;
+
+            case 0 :
+                System.out.println("Tchauuuu!!!");
+                scanner.close();
+                break;
+
             default:
                 System.out.println("Resposta invalida, escolha uma das opções do Menu!");
         }
