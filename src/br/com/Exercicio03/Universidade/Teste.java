@@ -14,7 +14,7 @@ package br.com.Exercicio03.Universidade;
       DepartamensoUniversidade.add(new Departamentos(1901,"Financeiro",1400));
       DepartamensoUniversidade.add(new Departamentos(1902,"RH",2000));
       DepartamensoUniversidade.add( new Departamentos(1903,"Administrativo",7392));
-      DepartamensoUniversidade.add(new Departamentos(1904,"Produção",6547));
+      DepartamensoUniversidade.add(new Departamentos(1904,"Produção",1400));
 
       funcionarios.add(new Funcionarios("Tauam Igor",1901,3768,"Docente"));
       funcionarios.add(new Funcionarios("Marcos Dias",1902,2000,"Técnico"));
@@ -49,7 +49,42 @@ package br.com.Exercicio03.Universidade;
         System.out.println("Código: " +DepartamensoUniversidade.get(i).getCodigo());
         System.out.println("Total de Gasto: " +DepartamensoUniversidade.get(i).getGastoTotal());
        }
+       retorno();
     }
+     public void listarFuncionarios(){
+         for (int i = 0; i < funcionarios.size(); i++){
+             System.out.println((i+1)+". "+funcionarios.get(i).getNome()+" - "+funcionarios.get(i).getCodigoDepartamento()+" - "+funcionarios.get(i).getTipoFuncionario()+" - "+funcionarios.get(i).getTipoFuncionario());
+         }
+         retorno();
+     }
+
+     public void listarDocentes(){
+
+      for (int i  = 0; i < funcionarios.size();i++){
+          if(funcionarios.get(i).getTipoFuncionario().equalsIgnoreCase("Docente")){
+              System.out.println((i+1)+". "+funcionarios.get(i).getNome());
+          }
+      }
+
+      retorno();
+     }
+
+     public void listarTecnico(){
+
+         for (int i  = 0; i < funcionarios.size();i++){
+             if(funcionarios.get(i).getTipoFuncionario().equalsIgnoreCase("Técnico")){
+                 System.out.println((i+1)+". "+funcionarios.get(i).getNome());
+             }
+         }
+
+         retorno();
+     }
+
+
+
+     public void listartodosDepartamentoseFuncionarios(){
+
+     }
 
     public void cadastroFun(){
       Scanner scanner = new Scanner(System.in);
@@ -93,11 +128,7 @@ package br.com.Exercicio03.Universidade;
       funcionarios.add( new Funcionarios(nome, codigoDepartamento, faixaSalarial, tipoFuncionario));
     }
 
-    public void listarFuncionarios(){
-      for (int i = 0; i < funcionarios.size(); i++){
-          System.out.println((i+1)+". "+funcionarios.get(i).getNome()+" - "+funcionarios.get(i).getCodigoDepartamento()+" - "+funcionarios.get(i).getTipoFuncionario()+" - "+funcionarios.get(i).getTipoFuncionario());
-        }
-    }
+
 
     public void buscarDepatamentoPorNome(){
       Scanner scanner = new Scanner(System.in);
@@ -158,7 +189,7 @@ package br.com.Exercicio03.Universidade;
 
     public void listaFuncionariosFaixaSalarial (){
       Scanner scanner = new Scanner(System.in);
-        System.out.println("Digite a Faixa Salarial");
+        System.out.println("Digite a Faixa Salarial Especifica para Encontrar os Funcionários");
         int faixaSalarial = scanner.nextInt();
         int totalFuncionarios  = 0;
         boolean funcionariosEncontrados = false;
@@ -181,11 +212,95 @@ package br.com.Exercicio03.Universidade;
 
             if(resposta == 1){
                 buscarDepatamentoPorNome();
-            }else {
+            }else if(resposta == 2){
                 menu();
+            }else {
+                System.out.println("Respota incorreto, escolha uma das opções do menu!");
             }
         }
         retorno();
+
+    }
+
+    public void buscarDepartamentoPorCodigo(int numero){
+
+      boolean departamentoEncontrado = false;
+        for (Departamentos departamento : DepartamensoUniversidade){
+            if (departamento.getCodigo() == numero){
+                System.out.println(departamento.getNomeDepartamento());
+            }
+        }
+
+    }
+
+    public void listarDepartamentoDeFuncionariosFaixaSalarialEspecifica(){
+      Scanner scanner = new Scanner(System.in);
+        System.out.println("Digite a faixa salarial específica dos funcionários para locar os Departamentos");
+        int faixa = scanner.nextInt();
+        boolean faixalocalizada = false;
+
+        for (Funcionarios funcionario: funcionarios){
+            if (funcionario.getFaixaSalarial() == faixa){
+                buscarDepartamentoPorCodigo(funcionario.getCodigoDepartamento());
+                faixalocalizada = true;
+            }
+        }
+        if (!faixalocalizada){
+            System.out.println("Departamentos não localizados!");
+            System.out.println("Deseja tentar novamente? digite: 1");
+            System.out.println("Voltar ao Menu Princial? digite: 2");
+            int resposta = scanner.nextInt();
+            if (resposta == 1){
+                listarDepartamentoDeFuncionariosFaixaSalarialEspecifica();
+            }else if(resposta == 2){
+                menu();
+            }else {
+                System.out.println("Respota invalida, escolha uma das opções do menu!");
+            }
+
+        }
+        retorno();
+
+
+
+
+    }
+
+    public void listarDepartamentocomGastoEspecifico(){
+      Scanner scanner = new Scanner(System.in);
+        System.out.println("digite uma faixa salarial específica");
+
+        if (scanner.hasNextInt()) {
+            int gastototal = scanner.nextInt();
+            int contador = 1;
+            boolean departamentoEncontrado = false;
+            for (Departamentos departamento : DepartamensoUniversidade){
+                if (departamento.getGastoTotal() == gastototal){
+                    System.out.println((contador++) +". "+departamento.getNomeDepartamento());
+                    departamentoEncontrado = true;
+                }
+            }
+
+            if(!departamentoEncontrado){
+                System.out.println("Departamento não encontrando");
+                System.out.println("Deseja tentar novamente? digite: 1");
+                System.out.println("Voltar ao Menu Princial? digite: 2");
+                int resposta = scanner.nextInt();
+
+                if (resposta == 1){
+                    listarDepartamentocomGastoEspecifico();
+                }else if( resposta == 2){
+                    menu();
+                }else {
+                    System.out.println("Respota invalida. seleciona uma das opções do menu!");
+                }
+
+            }
+            retorno();
+        }else {
+            System.out.println("Reposta inválida. Por favor, selecione uma das opções do menu!");
+        }
+
 
     }
 
@@ -225,6 +340,24 @@ package br.com.Exercicio03.Universidade;
                 break;
             case 5 :
                 listaFuncionariosFaixaSalarial();
+                break;
+            case 6 :
+                listarDepartamentoDeFuncionariosFaixaSalarialEspecifica();
+                break;
+            case 7 :
+                listarDepartamentocomGastoEspecifico();
+                break;
+            case 8 :
+                listarFuncionarios();
+                break;
+            case 9 :
+                listarDepartamentos();
+                break;
+            case 11 :
+                listarDocentes();
+                break;
+            case 12 :
+                listarTecnico();
                 break;
 
             case 0 :
