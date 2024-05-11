@@ -18,7 +18,7 @@ package br.com.Exercicio03.Universidade;
 
       funcionarios.add(new Funcionarios("Tauam Igor",1901,3768,"Docente"));
       funcionarios.add(new Funcionarios("Marcos Dias",1902,2000,"Técnico"));
-      funcionarios.add(new Funcionarios("Luis Carlos",1904,2000,"Docente"));
+      funcionarios.add(new Funcionarios("Luis Carlos",1902,2000,"Docente"));
 
   }
 
@@ -83,6 +83,18 @@ package br.com.Exercicio03.Universidade;
 
 
      public void listartodosDepartamentoseFuncionarios(){
+
+      for (int i = 0; i < DepartamensoUniversidade.size(); i++){
+          System.out.println("No Departamento: "+DepartamensoUniversidade.get(i).getNomeDepartamento());
+          System.out.println("Temos os Funcionários");
+
+          for (int item = 0; item < funcionarios.size(); item++){
+              if(funcionarios.get(item).getCodigoDepartamento() == DepartamensoUniversidade.get(i).getCodigo()){
+                  System.out.println(funcionarios.get(item).getNome());
+              }
+          }
+      }
+      retorno();
 
      }
 
@@ -352,6 +364,9 @@ package br.com.Exercicio03.Universidade;
                 break;
             case 9 :
                 listarDepartamentos();
+                break;
+            case 10 :
+                listartodosDepartamentoseFuncionarios();
                 break;
             case 11 :
                 listarDocentes();
