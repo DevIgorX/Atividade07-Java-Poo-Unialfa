@@ -11,7 +11,7 @@ class CadastrarProduto {
 
 
 
-    public void cadastrarEstadual ( Estadual ProdutoEstadual){
+    public void cadastrarEstadual (Estadual ProdutoEstadual){
 
         this.ProdutoEstadual.add(ProdutoEstadual);
         this.produtos.add(ProdutoEstadual);

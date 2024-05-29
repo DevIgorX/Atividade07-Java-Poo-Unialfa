@@ -1,6 +1,5 @@
 package br.com.Exercicio03.Universidade;
 
-
  import java.util.ArrayList;
  import java.util.Scanner;
 
@@ -15,11 +14,9 @@ package br.com.Exercicio03.Universidade;
       DepartamensoUniversidade.add(new Departamentos(1902,"RH",2000));
       DepartamensoUniversidade.add( new Departamentos(1903,"Administrativo",7392));
       DepartamensoUniversidade.add(new Departamentos(1904,"Produção",1400));
-
       funcionarios.add(new Funcionarios("Tauam Igor",1901,3768,"Docente"));
       funcionarios.add(new Funcionarios("Marcos Dias",1902,2000,"Técnico"));
       funcionarios.add(new Funcionarios("Luis Carlos",1902,2000,"Docente"));
-
   }
 
   public void cadastrarDepartamento(int codigo, String nomeDepatamento, int gasto){
@@ -157,15 +154,16 @@ package br.com.Exercicio03.Universidade;
         if(!departamentoEncontrado){
             System.out.println("Departamento não localizado!");
             System.out.println("Deseja tentar novamente? digite: 1");
-            System.out.println("Voltar ao Menu Princial? digite: 2");
+            System.out.println("Voltar ao Menu Principal? digite: 2");
             int resposta = scanner.nextInt();
             if (resposta == 1){
                 buscarDepatamentoPorNome();
             }else {
                 menu();
             }
-
         }
+
+
         retorno();
 
     }
@@ -186,7 +184,7 @@ package br.com.Exercicio03.Universidade;
         if(!funcionarioEncontrado){
             System.out.println("Funcionário não localizado!");
             System.out.println("Deseja tentar novamente? digite: 1");
-            System.out.println("Voltar ao Menu Princial? digite: 2");
+            System.out.println("Voltar ao Menu Principal? digite: 2");
             int resposta = scanner.nextInt();
 
             if(resposta == 1){
@@ -219,7 +217,7 @@ package br.com.Exercicio03.Universidade;
         if(!funcionariosEncontrados){
             System.out.println("Funcionários não localizados!");
             System.out.println("Deseja tentar novamente? digite: 1");
-            System.out.println("Voltar ao Menu Princial? digite: 2");
+            System.out.println("Voltar ao Menu Principal? digite: 2");
             int resposta = scanner.nextInt();
 
             if(resposta == 1){
@@ -260,7 +258,7 @@ package br.com.Exercicio03.Universidade;
         if (!faixalocalizada){
             System.out.println("Departamentos não localizados!");
             System.out.println("Deseja tentar novamente? digite: 1");
-            System.out.println("Voltar ao Menu Princial? digite: 2");
+            System.out.println("Voltar ao Menu Principal? digite: 2");
             int resposta = scanner.nextInt();
             if (resposta == 1){
                 listarDepartamentoDeFuncionariosFaixaSalarialEspecifica();
@@ -296,7 +294,7 @@ package br.com.Exercicio03.Universidade;
             if(!departamentoEncontrado){
                 System.out.println("Departamento não encontrando");
                 System.out.println("Deseja tentar novamente? digite: 1");
-                System.out.println("Voltar ao Menu Princial? digite: 2");
+                System.out.println("Voltar ao Menu Principal? digite: 2");
                 int resposta = scanner.nextInt();
 
                 if (resposta == 1){
@@ -385,25 +383,13 @@ package br.com.Exercicio03.Universidade;
         }
 
     }
+     public static void main(String[] args) {
 
+         Universidade universidade = new Universidade();
+         universidade.menu();
 
-
-}
-
-
-
-public class Teste {
-
-    public static void main(String[] args) {
-
-        Universidade universidade = new Universidade();
-        universidade.menu();
-
-//
-
-
-    }
-
-
+     }
 
 }
+
+

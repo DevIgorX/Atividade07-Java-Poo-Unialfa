@@ -17,6 +17,7 @@ public class Funcionarios {
     }
 
     public String getNome(){
+
         return nome;
     }
     public int getCodigoDepartamento(){

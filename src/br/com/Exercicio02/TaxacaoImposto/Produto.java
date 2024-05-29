@@ -24,6 +24,7 @@ public  abstract class Produto {
     }
 
     public void setImposto(double imposto){
+
         this.imposto = imposto;
     }
 
