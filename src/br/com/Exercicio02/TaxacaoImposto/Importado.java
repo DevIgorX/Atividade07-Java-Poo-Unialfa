@@ -21,6 +21,14 @@ public class Importado extends  Produto {
         return taxaImportacao;
     }
 
+    public void setTaxa( double taxa){
+        this.taxa = taxa;
+    }
+
+    public void setTaxaImportacao(double taxaImportacao){
+        this.taxaImportacao = taxaImportacao;
+    }
+
     @Override
     public void relatorio() {
         System.out.println("Detalhes do Produto");

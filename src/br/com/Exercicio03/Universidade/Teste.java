@@ -5,7 +5,6 @@ package br.com.Exercicio03.Universidade;
 
 
  class Universidade {
-
   public ArrayList<Departamentos> DepartamensoUniversidade = new ArrayList<>();
   public ArrayList<Funcionarios> funcionarios = new ArrayList<>();
 
